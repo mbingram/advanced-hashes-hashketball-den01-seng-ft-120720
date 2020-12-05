@@ -172,15 +172,13 @@ end
 
 
 def player_stats(name)
-	game_hash.each do |team_keys, keys|
-		keys[:players].each do |a| 
-			if a[:player_name] == name
-				my_hash = a
-				my_hash.shift
-				return my_hash
-			end
-		end
-	end
+  game_hash.each do |team_keys, keys|
+    keys[:players].each do |player|
+      if stats[:player_name] == name
+        return player.delete_if { |stat, value| [:player_name].include?(stat)}
+      end
+    end
+  end
 end
 
 
